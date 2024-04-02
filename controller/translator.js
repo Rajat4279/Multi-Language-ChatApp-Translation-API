@@ -1,7 +1,8 @@
-const API = require("../googleAPI/googleTranslationAPI");
+const { API } = require("../googleAPI/googleTranslationAPI");
+require("dotenv").config();
 
 const translate = async (req, res) => {
-    
+
     const credentials = process.env.CREDENTIALS;
 
     const { text, target } = req.query;
@@ -9,16 +10,15 @@ const translate = async (req, res) => {
     try {
         const [response] = await API(credentials, text, target);
         return res.status(200).json({
-            success:true,
-            data:response,
+            success: true,
+            data: response,
         });
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         res.status(500).json({
-            success:false,
+            success: false,
             msg: 'Internal Server Error',
         });
     }
 }
-
-module.exports = translate;
+module.exports = { translate };

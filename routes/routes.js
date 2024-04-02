@@ -1,7 +1,5 @@
 const express = require("express");
-const dotenv = require("dotenv");
-const translate = require("../controller/translator");
-dotenv.config();
+const { translate } = require("../controller/translator");
 
 const router = express.Router();
 
