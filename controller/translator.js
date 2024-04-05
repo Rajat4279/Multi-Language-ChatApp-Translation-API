@@ -4,10 +4,10 @@ const translate = async (req, res) => {
 
     const credentials = process.env.CREDENTIALS;
 
-    const { text, target } = req.query;
+    const { text, source, target } = req.query;
 
     try {
-        const [response] = await API(credentials, text, target);
+        const [response] = await API(credentials, text, source, target);
         return res.status(200).json({
             success: true,
             data: response,
