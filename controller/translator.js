@@ -14,4 +14,4 @@ const translatorFunction = async (translate, text, target) => {
     return await translate.translate(text, target);
 }
 
-module.exports = API;
+module.exports = API;
