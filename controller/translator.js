@@ -1,24 +1,17 @@
-const API = require("../googleAPI/googleTranslationAPI");
+const { Translate } = require('@google-cloud/translate').v2;
 
-const translate = async (req, res) => {
+const API = async (credentials, text, target) => {
 
-    const credentials = process.env.CREDENTIALS;
+    const translate = new Translate({
+        credentials: JSON.parse(credentials),
+        projectId: JSON.parse(credentials).project_id
+    });
 
-    const { text, source, target } = req.query;
+    return translatorFunction(translate, text, target);
+};
 
-    try {
-        const [response] = await API(credentials, text, source, target);
-        return res.status(200).json({
-            success: true,
-            data: response,
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            msg: 'Internal Server Error',
-        });
-    }
+const translatorFunction = async (translate, text, target) => {
+    return await translate.translate(text, target);
 }
 
-module.exports = translate;
+module.exports = API;
