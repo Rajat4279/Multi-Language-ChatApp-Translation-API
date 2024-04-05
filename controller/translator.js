@@ -9,13 +9,13 @@ const translate = async (req, res) => {
     try {
         const [response] = await API(credentials, text, target);
         return res.status(200).json({
-            success: true,
-            data: response,
+            success:true,
+            data:response,
         });
     } catch (err) {
         console.error(err);
         res.status(500).json({
-            success: false,
+            success:false,
             msg: 'Internal Server Error',
         });
     }
