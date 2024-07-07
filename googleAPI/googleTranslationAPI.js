@@ -6,7 +6,7 @@ const API = async (credentials, text, target) => {
         credentials: JSON.parse(credentials),
         projectId: JSON.parse(credentials).project_id
     });
-
+    
     return translatorFunction(translate, text, target);
 };
 

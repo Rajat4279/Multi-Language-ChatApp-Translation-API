@@ -1,8 +1,10 @@
 const API = require("../googleAPI/googleTranslationAPI");
+const credentials = require("../cred.js");
 
 const translate = async (req, res) => {
 
-    const credentials = process.env.CREDENTIALS;
+    // const credentials = process.env.CREDENTIALS;
+    console.log(credentials);
 
     const { text, target } = req.query;
 
